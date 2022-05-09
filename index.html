@@ -1,0 +1,880 @@
+<html>
+	<head>
+		<title>ML with SPIKE Prime Workshop</title>
+		<!-- Tufts CEEO's ServiceDock -->
+		<script src='https://cdn.jsdelivr.net/gh/tuftsceeo/SPIKE-Web-Interface@1.1.2/cdn/ServiceDock.min.js'></script>
+		<!-- ACE Browser-Based IDE API -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js'></script>
+        <style>
+	        .editor {
+		        border: 1px black solid;
+	            position: relative;
+	            left: 10px;
+	            height: 300px;
+	            width: 700px;
+	        }
+	        .instructions {
+				padding: 5px;
+				background-color: lightyellow;
+			}
+			.activities {
+				background-color: lightgreen;
+				padding: 5px;
+			}
+	    </style>
+	</head>
+	<body>
+		
+		<h1 align=center>Machine Learning (ML) with SPIKE Prime</h1>
+		<p align=center>An introductory workshop by <b>Ethan Danahy</b> in collaboration with <b>MTA (Modern Teaching Aids) Australia</b></p>
+		<p align=center><img src='./resources/MLbot.png' /></p>
+		<hr />
+
+		<!-- SPIKE Prime Service Doc -->
+		<div style="position: fixed; top: 15px; right: 15px;" align=center>
+			<small>
+				<em>Using Chrome?</em><br />
+				Connect to SPIKE here!<br />
+			</small>
+			<service-spike id="service_SPIKE" ></service-spike>
+		</div>
+
+		<h2>Quick Links</h2>
+		<ul>
+			<li><a href='./resources/ML_with_SPIKE_Prime_Workshop.pdf' target=_blank>Slides from today's workshop</a></li>
+			<li><a href='./resources/SPIKEPrimeMTAbot.pdf' target=_blank>Modern Teaching Aid's SPIKE Prime robot build</a> (aka MTA Bot)</li>
+			<li><a href='https://education.lego.com/en-us/downloads/spike-app/software' target=_blank>LEGO Education's SPIKE App Software</a></li>
+				<ul><li>Beta: <a href='https://spike.legoeducation.com' target=_blank>Web App version</a></li></ul>
+			<li><a href='https://tufts-cr-for-lego.codingrooms.com/documentation/spike_prime_python_knowledge_base' target=_blank>SPIKE Prime Python Knowledge Base</a> (webpage)</li>
+		</ul>
+		
+		<hr />
+		<h2>While you are waiting...</h2>
+		<ul>
+			<li><a href='./resources/SPIKEPrimeMTAbot.pdf' target=_blank>Build the MTA Bot</a></li>
+			<li>Make sure all your cables are secure on your MTA Bot!</li>
+		</ul>
+		<div align=center>
+			<img src='./resources/cable_management.png' width='600px' /><br />
+			<p><small>Try to ensure no cables stick out beyond the width of the wheels...</small></p>
+		</div>
+		
+		<hr />
+		<h2>Workshop Agenda</h2>
+		<ul>
+			<li><a href='#workshop'>Workshop Introduction</a> (including: Dr. E's use of SPIKE Prime to teach introduction to engineering)</li>
+			<li><a href='#ml'>Introduction to Machine Learning (ML)</a></li>
+			<li><a href='#supervised'>Supervised Learning Overview</a></li>
+				<ul><li>Hands-On: <a href='#training1'>training Supervised Classification</a></li></ul>
+			<li><a href='#unsupervised'>Unsupervised Learning Overview</a></li>
+			<li><a href='#reinforcement'>Reinforcement Learning Overview</a></li>
+				<ul><li>Hands-On: <a href='#training2'>training Q-Learning</a></li></ul>
+			<li><a href='#next'>Next Steps and Further Exploration</a></li>
+		</ul>
+		
+		<hr />
+		<a name='workshop'></a>
+		<h2>Workshop Introduction</h2>
+
+		<div align=center>
+			<h3>Workshop Facilitators</h3>
+			<img src='./resources/facilitators.png' />
+		</div>
+
+		<blockquote>
+			<h3>Dr. E's <em>Introduction to Engineering</em> course at Tufts University (Simple Robotics with SPIKE Prime)</h3>
+			
+			<div align=center><img src='./resources/semester_design.png' /></div>
+			
+			<ul>
+				<li>"First Five Activities":
+					<a href='https://www.ceeoinnovations.org/RoboticsPlayground/playlists/dreplaylist.html' target=_blank>Placemat Instructions</a>
+				</li>
+				<li>The annual <a href='https://nolop.org/haunted-house/' target=_blank>Nolop Makerspace Haunted House</a></li>
+				<li>Final Project: <em>"Playful Creations"</em></li>
+					<ul>
+						<li><a href='https://now.tufts.edu/2022/01/04/robotics-whole-human' targete=_blank>"Robotics for the Whole Human"</a> article</li>
+						<li><a href='https://newtv.org/recent-videos-community/105-innovation-showcase/7486-innovation-showcase-collaboration-between-tufts-and-the-horace-mann-school' target=_blank>Innovation Showcase</a> (TV show interview, 30 min)</li>
+					</ul>
+			</ul>
+		</blockquote>
+
+		<hr />
+		<a name='ml'></a>
+		<h2>Introduction to Machine Learning (ML)</h2>
+
+			<blockquote><iframe width="560" height="315" src="https://www.youtube.com/embed/Gv9_4yMHFhI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></blockquote>
+
+		<hr />
+		<a name='supervised'></a>
+		<h2>Supervised Learning Overview</h2>
+		
+		<blockquote>
+			<img src='./resources/SupervisedLearning.png'>
+		</blockquote>
+
+		<hr />
+		<a name='training1'></a>
+		<h2>Hands-on: training Supervised Classification via Nearest Neighbor (NN)</h2>
+		
+		<p><b>Sensor Connections:</b></p>
+		
+		<ul>
+			<li>Attach <b>DistanceSensor</b> to "Port E"</li>
+			<li>Attach <b>ColorSensor</b> to "Port F"</li>
+			<li><em>Note 1:</em> can also use <b>ForceSensor</b></li>
+			<li><em>Note 2:</em> can customize Port in code (see line 23)</li>
+		</ul>
+		
+		<div align=center>
+			<img src='./resources/SL_training.gif' /><br />
+			<p><small><em>Example:</em> ColorSensor Training<br />Two data points: 2 sensor values and corresponding 2 motor positions</small></p>
+		</div>
+
+		<blockquote>
+			<h3 class='activities'>Activity 1: <em>Nearest Neighbor (NN) Classification</em></h3>
+			<p><b>Download:</b> <code><a href='./resources/NN_Classification.llsp'>NN_Classification.llsp</a></code> (Python code, SPIKE App file type <code>.llsp</code>)</p>
+			<p><b>Instructions:</b></p>
+			<blockquote class='instructions'>
+				<p><b><em>Training</em></b> (at start after first beep)</p>
+				<ol>
+					<li>Move the motor to position (classification).</li>
+					<li>Adjust your sensor to correct value (data point).</li>
+					<li>Hit the <b>"right button"</b> on hub for each training point.</li>
+				</ol>
+				<p><b><em>Making Predictions</em></b> (after done training)</p>
+				<ol>
+					<li>Hit the <b>"left button"</b> to stop training and start making predictions.</li>
+					<li>Robot will beep to indicate new mode.</li>
+					<li>Robot will now read sensor value, find nearest neighbor, and adjust motor position accordingly.</li>
+				</ol>
+				<p>At this point, hit the "left button" to end program (displays 'X').</p>
+			</blockquote>
+			<input type="hidden" id="name0" value="ML Activity 1" style="display: none" />
+			<select id="slot0">
+				<option value="1" selected>Slot 1</option>
+				<option value="2">Slot 2</option>
+				<option value="3">Slot 3</option>
+				<option value="4">Slot 4</option>
+				<option value="5">Slot 5</option>
+			</select>
+			<input type="button" id="download0" value="Download" style="display: none" />
+	        <input type="button" id="execute0" value="Execute" style="display: none" />
+	        <input type="button" id="downloadandexecute0" value="Download and Execute" />
+	        <input type="button" id="stop0" value="Stop" />
+			<br /><br />
+			<div class='editor' id='editor0'>'''
+    NEAREST NEIGHBOR (NN) CLASSIFICATION
+
+    TRAINING (at start after first beep):
+    (1) Move the motor to position (classification).
+    (2) Adjust your sensor to correct value (data point).
+    (3) Hit the "right button" on hub for each training point.
+
+    MAKING PREDICTIONS (after done training):
+    (1) Hit the "left button" to stop training and start making predictions.
+    (2) Robot will beep to indicate new mode.
+    (3) Robot will now read sensor value, find nearest neighbor, and
+        adjust motor position accordingly.
+    
+    At this point, hit the "left button" to end program (displays 'X').
+'''
+from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
+from spike.control import wait_for_seconds, wait_until, Timer
+
+# ADJUST THESE CONSTANTS TO MATCH YOUR ROBOT:
+motor_port = 'A'
+motor_speed = 50
+sensor_port = 'E'
+sensor_type = DistanceSensor # options: ForceSensor, ColorSensor, DistanceSensor
+
+hub = PrimeHub()
+# init motor
+motor = Motor(motor_port)
+motor.set_stop_action('coast')
+motor.stop()
+# init sensor
+sensor = sensor_type(sensor_port)
+if sensor_type == ForceSensor:
+    sensor_function = sensor.get_force_percentage
+elif sensor_type == ColorSensor:
+    sensor_function = sensor.get_ambient_light
+elif sensor_type == DistanceSensor:
+    sensor_function = sensor.get_distance_percentage
+sensor_function() # call sensor function once to make sure initialized
+# init interface buttons
+training_button = hub.right_button
+training_button.was_pressed() # call button function once to initialize
+predict_button = hub.left_button
+predict_button.was_pressed() # call button function once to initialize
+
+# data structures
+training_data = [] # start with empty list
+
+# start the algorithm
+hub.speaker.beep()
+hub.light_matrix.off()
+
+# PART 1: TRAINING
+num_training_points = 0
+predict_button_pushed = False
+training_button_pushed = False
+# continually collect training data
+# break out of loop when "predict button" is pushed
+while True:
+    hub.light_matrix.write(str(num_training_points)[-1]) # just write one's digit
+    # wait until some button pushed
+    while not training_button_pushed and not predict_button_pushed:
+        training_button_pushed = training_button.was_pressed()
+        predict_button_pushed = predict_button.was_pressed()
+    if training_button_pushed:
+        motor_angle = motor.get_position() # position of motor (0 -> 360)
+        sensor_value = sensor_function()
+        if sensor_value == None:
+            # error reading sensor
+            print('ERROR TRAINING: sensor value is None')
+        else:
+            num_training_points += 1 # add new training point
+            # create tuple of data (combine together)
+            training_point = (num_training_points, motor_angle, sensor_value)
+            print('Data Point #, Motor Angle, Sensor Val = ', training_point)
+            # add tuple of training data to training data list:
+            training_data.append(training_point)
+        training_button_pushed = False # reset
+    elif predict_button_pushed:
+        # predict button was pushed; this means training was done
+        # so exit the loop and continue program
+        predict_button_pushed = False # reset
+        break
+
+# DONE TRAINING
+# PART 2: PREDICTIONS
+hub.speaker.beep()
+hub.light_matrix.write('P') # for PREDICTIONS
+
+# Loop until the predict button is pushed again
+while not predict_button.was_pressed():
+    current_sensor_value = sensor_function()
+    # make sure have a valid sensor value
+    if not current_sensor_value == None: 
+        minimum_distance = 1000 # any number bigger than largest expected sensor val
+        go_to_position = 0 # a default number
+        found_training_index = 0 # what training point it was
+        # go through all training points and find nearest neighbor
+        for training_point in training_data:
+            # unpack tuple of training data point
+            training_index, motor_angle, sensor_value = training_point
+            # calculate distance
+            current_dist = abs(current_sensor_value - sensor_value)
+            if current_dist < minimum_distance:
+                # found closer neighbor, so update best-so-far values
+                minimum_distance = current_dist
+                go_to_position = motor_angle
+                found_training_index = num_training_points
+        # done searching through all the training data
+        # so: move motor to this new position
+        motor.run_to_position(go_to_position, speed=motor_speed)
+    # loop back and get new sensor value and test again!
+
+# DONE WITH PREDICTIONS
+hub.speaker.beep()
+hub.light_matrix.write('X') # done!
+</div>
+
+			<h3 class='activities'>Activity 1: <em>Extensions</em></h3>
+
+			<p><b>Possible Extensions to Activity 1:</b></p>
+			<ul>
+				<li>Try training the robot to classify multiple different classification states and see if it remains accurate.</li>
+				<li>Change the sensor from default and train it with different sensor values/input data points.</li>
+					<ul><li>Can you use the Color Sensor and store the RGB values?</li></ul>
+				<li>The <em>Nearest Neighbor</em> algorithm looks for the <em>closest</em> match. Implement <a href='https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm' target=_blank>K-Nearest Neighbor</a> to find the most-common closest match.</li>
+				<li>Extend the code to incorporate TWO motors instead of just one (two outputs).</li>
+				<li>Extend the code to incorporate TWO sensors instead of just one (two inputs).</li>
+			</ul>
+
+			<h3 class='activities'>Activity 1: <em>Examples</em></h3>
+			
+			<p><b>Height Classification:</b></p>
+			
+			<blockquote><p>
+				<table><tr>
+					<td><img src='./resources/short_tall_build1.png' height=250 /></td>
+					<td><img src='./resources/right.png' width=250 height=250 /></td>
+					<td><img src='./resources/short_tall_build2.png' height=250 /></td>
+				</tr></table>
+			</p></blockquote>
+
+			
+			<blockquote><iframe width="560" height="315" src="https://www.youtube.com/embed/e1MvAgCR2Cw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></blockquote>
+			
+			<p><b>Storytelling: <em>Punxsutawney Phil</em></b></p>
+			
+			<blockquote><p><small><em>Note:</em> This uses different code so training process is slightly different. But project concept is possible!</small></p></blockquote>
+
+			<blockquote><iframe width="560" height="315" src="https://www.youtube.com/embed/0aMVeASDi70" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></blockquote>
+			
+			<h3 class='activities'>Activity 1: <em>Questions to Ask Your Students</em></h3>
+			
+			<ul>
+				<li>How well do your predictions perform? How accurate are they?</li>
+				<li>When don't your predictions perform well? What characteristics of your system result in incorrect predictions?</li>
+				<li>How much training data is enough? How much training data is <em>too much</em>?</li>
+				<li>What happens if you don't enter <em>any</em> training data? Or what if you just use <em>one</em> data point of training data?</li>
+				<li>How do you know your training data completely represents the entire population (set of possible values)?</li>
+				<li>Are your input values (e.g. sensor readings) truly correlated (or causally connected?) to your output classification?</li>
+			</ul>
+			
+		</blockquote>
+
+		<hr />
+		<a name='unsupervised'></a>
+		<h2>Unsupervised Learning Overview</h2>
+
+		<blockquote>
+			
+			<ul>
+				<li>IBM Blog Article: <a href='https://www.ibm.com/cloud/blog/supervised-vs-unsupervised-learning' target=_blank>Supervised vs. Unsupervised Learning: What’s the Difference?</a></li>
+				<li><a href='https://en.wikipedia.org/wiki/K-means_clustering' target=_blank>K-Means Clustering</a></li>
+			</ul>
+			
+			<p><img src='./resources/k_means_clustering.png' /></p>
+			<p><img src='./resources/k_means_clustering_algorithm.png' /></p>
+			
+			<p><b>Programming K-Means Clustering in Python</b></p>
+			
+			<ul>
+				<li><a href='https://www.analyticsvidhya.com/blog/2021/04/k-means-clustering-simplified-in-python/' target=_blank>K Means Clustering Simplified in Python</a> (<em>note:</em> requires <a href='https://numpy.org' target=_blank><code>numpy</code></a> which isn't possible in micropython/on the SPIKE Hub)</li>
+			</ul>
+
+		</blockquote>
+
+		<hr />
+		<a name='reinforcement'></a>
+		<h2>Reinforcement Learning Overview</h2>
+
+		<p><b>Introduction to Reinforcement Learning</b></p>
+		
+			<blockquote><iframe width="560" height="315" src="https://www.youtube.com/embed/JgvyzIkgxF0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></blockquote>
+
+			<blockquote><p><img src='./resources/reinforcement_learning.png' /></p></blockquote>
+
+		<hr />
+		<a name='training2'></a>
+		<h2>Hands-on: training Q-Learning for Finite Markov Decision Process (FMDP)</h2>
+
+		<blockquote>
+			<h3 class='activities'>Activity 2: <em>Light Matrix Pointer</em></h3>
+			<p><b>Download:</b> <code><a href='./resources/Pointer.llsp'>Pointer.llsp</a></code> (Python code, SPIKE App file type <code>.llsp</code>)</p>
+			<p><b>Description:</b></p>
+			<p>This doesn't have anything to do with reinforcement learning, but is a good activity
+				to get students thinking about the Hub's sensors, how it detects direction, and
+				doing some modular mathematics to calculate difference between two direction values.</p>
+			<p><img src='./resources/pointer.gif' /></p>
+			<p><b>Instructions:</b></p>
+			<blockquote class='instructions'>
+				<p>On start, this reads the direction the hub is facing.</p>
+				<p>Then as the hub rotates, changes arrow to always point in same direction.</p>
+			</blockquote>
+			<input type="hidden" id="name1" value="Pointer" style="display: none" />
+			<select id="slot1">
+				<option value="1">Slot 1</option>
+				<option value="2" selected>Slot 2</option>
+				<option value="3">Slot 3</option>
+				<option value="4">Slot 4</option>
+				<option value="5">Slot 5</option>
+			</select>
+			<input type="button" id="download1" value="Download" style="display: none" />
+	        <input type="button" id="execute1" value="Execute" style="display: none" />
+	        <input type="button" id="downloadandexecute1" value="Download and Execute" />
+	        <input type="button" id="stop1" value="Stop" />
+			<br /><br />
+			<div class='editor' id='editor1'>'''
+    POINTER
+
+    On start, reads the direction the hub is facing.
+    As the hub rotates, changes arrow to point in same direction
+'''
+from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
+from spike.control import wait_for_seconds, wait_until, Timer
+
+hub = PrimeHub()
+direction = MotionSensor()
+original_direction = direction.get_yaw_angle() # -180 to 180
+matrix = LightMatrix()
+matrix.show_image('ARROW_S')
+# make list of arrows for looking up/displaying later:
+arrows = ['ARROW_S','ARROW_SW', 'ARROW_W','ARROW_NW', 'ARROW_N','ARROW_NE', 'ARROW_E','ARROW_SE']
+
+done_button = hub.left_button
+while not done_button.is_pressed():
+    new_direction = direction.get_yaw_angle() # -180 to 180
+    diff = (original_direction - new_direction) + 360
+    diff = diff % 360 # mod 360 to get in range 0 --> 360
+    index = int(diff / 45) # convert angle to list index
+    matrix.show_image(arrows[index]) # look up and display arrow
+    wait_for_seconds(0.25)
+
+print('Done')
+hub.speaker.beep()
+matrix.write('X')
+</div>
+			<h3 class='activities'>Activity 2: <em>Questions to Ask Your Students</em></h3>
+			
+			<ul>
+				<li>What is the difference between <em>yaw</em>, <em>pitch</em>, and <em>roll</em>?</li>
+				<li>What sensor(s) is the Hub using to figure out direction?</li>
+				<li>How accurate is the sensor? What are the limitations of the sensor?</li>
+				<li>When does the sensor work well? When will the sensor <em>drift</em> (get inaccurate over time)?</li>
+			</ul>
+			
+		</blockquote>
+
+		<blockquote>
+			<hr />
+			
+			<h2>Q-Learning Overview (for Silly Walks robots)</h2>
+			
+			<p align=center><img src='./resources/q_learning.png' /></p>
+			
+		</blockquote>
+
+		<blockquote>
+			<h3>BEFORE YOU START:</h3>
+			<ul>
+				<li>Make sure your cables are organized and tight/close to your robot (so they don't get caught in the "legs")</li>
+				<li>Build new "legs" for your robot to use instead of wheels</li>
+				<li>Make sure you have a big open space (2m x 2m?) to train your robot; you don't want to bump into any walls or other objects</li>
+			</ul>
+			
+			<div align=center>
+				<img src='./resources/cable_management.png' width='300px' /><br />
+				<p><small>Try to ensure no cables stick out beyond the width of the wheels...</small></p>
+			</div>
+			
+			<div align=center>
+				<img src='./resources/legs.png' /><br />
+				<p><small>Add legs to the base MTA Bot</small></p>
+			</div>
+			
+		</blockquote>
+		
+		<blockquote>
+			<h3 class='activities'>Activity 3: <em>Smart Walker</em> (via Q-Learning)</h3>
+			<p><b>Download:</b> <code><a href='./resources/Pointer.llsp'>QLearning.llsp</a></code> (Python code, SPIKE App file type <code>.llsp</code>)</p>
+			<p><b>Description:</b></p>
+			<p><a href='https://education.lego.com/v3/assets/blt293eea581807678a/bltf117b333c6076b7e/5f880123b8b59a77a945d12a/le_activitybrief_sillywalks_wb.pdf' target=_blank>Silly Walk robots</a> end up going in any/all directions! Using the Q-Learning Reinforcement Learning algorithm we can train a walker-robot to auto-correct and head straight.</p>
+			<p>
+				<table><tr>
+					<td><img src='./resources/silly_walk.gif' /></td>
+					<td><img src='./resources/right.png' width=240 height=240 /></td>
+					<td><img src='./resources/walker.gif' /></td>
+				</tr></table>
+			</p>
+			<p><b>Instructions:</b></p>
+			<blockquote class='instructions'>
+				<p>This program will generate a "Smart Walker" that walks straight.</p>
+				<ul>
+					<li>The Hub's <b>right button</b> will add training data to the set.</li>
+					<li>The Hub's <b>left button</b> will use current data to run a test.</li>
+				</ul>
+				<ul>
+					<li>Reset the robot in the same starting position for each episode.</li>
+					<li>Make sure the robot doesn't hit walls, flip over, etc.</li>
+					<li>Run several Training episodes to develop the internal Q-Table.</li>
+					<li>Then do a Test episode to see how well it walks straight.</li>
+				</ul>
+			</blockquote>
+			<input type="hidden" id="name2" value="ML Smart Walker" style="display: none" />
+			<select id="slot2">
+				<option value="1">Slot 1</option>
+				<option value="2">Slot 2</option>
+				<option value="3" selected>Slot 3</option>
+				<option value="4">Slot 4</option>
+				<option value="5">Slot 5</option>
+			</select>
+			<input type="button" id="download2" value="Download" style="display: none" />
+	        <input type="button" id="execute2" value="Execute" style="display: none" />
+	        <input type="button" id="downloadandexecute2" value="Download and Execute" />
+	        <input type="button" id="stop2" value="Stop" />
+			<br /><br />
+			<div class='editor' id='editor2'>'''
+    Q-LEARNING (REINFORCEMENT LEARNING)
+
+    This program will generate a "Smart Walker" that walks straight.
+    The Hub's right button will add training data to the set.
+    The Hub's left button will use current data to run a test.
+
+    Reset the robot in the same starting position for each episode.
+    Make sure the robot doesn't hit walls, flip over, etc.
+    Run several Training episodes to develop the internal Q-Table.
+    Then do a Test episode to see how well it walks straight.
+'''
+from spike import PrimeHub, LightMatrix, Button, StatusLight, ForceSensor, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor, MotorPair
+from spike.control import wait_for_seconds, wait_until, Timer
+import random
+
+# update these CONSTANTS to match your robot
+motorR_port = 'A'
+motorL_port = 'B'
+# motor speeds:
+motor_slow = 30
+motor_medium = 45
+motor_fast = 60
+# number of steps per episode
+num_steps_per_episode = 10
+
+# DEFINE StateSpace
+# - 0 is facing straight ahead
+# - negative values is when turning one way
+# - positive values are when turning the other way
+# - there are five possible states
+StateSpace = [-2, -1, 0, 1, 2] # values of the different states
+
+# DEFINE RewardSpace
+# - when the agent arrives at a particular state, it will receive a corresponding reward.
+RewardSpace = [-10, -2, 10, -2, -10] # must match StateSpace
+
+# DEFINE ActionSpace
+# - S is Slow, M is Medium, F is Fast
+S = motor_slow
+M = motor_medium
+F = motor_fast
+# - define the 9 possible combinations of the two motors
+# - this gives the total ActionSpace
+ActionSpace = [
+    [S,S],[S,M],[S,F], # when first motor is Slow
+    [M,S],[M,M],[M,F], # when first motor is Medium
+    [F,S],[F,M],[F,F] # when first motor is Fast
+]
+
+# initialize robot parts:
+hub = PrimeHub()
+light_matrix = LightMatrix()
+light_matrix.write('Q') # for Q-Learning!
+motors = MotorPair(motorR_port, motorL_port) # note: this is backwards for our build!
+direction = MotionSensor()
+# init interface buttons
+training_button = hub.right_button
+training_button.was_pressed() # call once to initialized
+testing_button = hub.left_button
+testing_button.was_pressed() # call once to initialized
+
+# function: get_hub_state
+# - reads the hub's current angle
+# - returns cooresponding state (matching StateSpace)
+def get_hub_state():
+    current_angle = direction.get_yaw_angle()
+    if current_angle < -45:
+        state = -2
+    elif current_angle > 45:
+        state = 2
+    elif current_angle <  -10:
+        state = -1
+    elif current_angle > 10:
+        state = 1
+    else: # facing ahead!
+        state = 0
+    return state
+
+# Epsilon-greedy policy is commonly used in RL for a learning agent to choose actions.
+# Epsilon represents the probability of agent choosing random actions to explore the environment (exploration).
+# Otherwise, the agent would choose the action it currently thinks to be the best one (exploitation),
+# which is the action that has highest Q-value in current state.
+epsilon = 0.9
+def greedy(state, epsilon_in = epsilon):
+    k = random.random() # random number 0 to 1
+    if epsilon > k:
+        # greedy: pick a random action from the action space
+        action = ActionSpace[random.randint(0, 8)]
+    else:
+        # else pick the action with the maximum Q-value
+        stateindex = StateSpace.index(state)
+        actionarray = qtable[stateindex]
+        actionindex = actionarray.index(max(actionarray))
+        action = ActionSpace[actionindex]
+    return action # action is a motor-pair set of speeds
+
+# Bellman Equation. This is how a Q-value of one state-action pair is updated after each time step.
+# Every time after you move from state A to state B, using action X and receiving reward R, the
+# Q-value of Q-table[state A, action X] will be updated. Alpha determines whether the agent should care
+# more about past or new learning experience. Gamma determines the value of future rewards. If
+# gamme is one, the agent values future rewards just as much as current ones.
+gamma = 0.9
+alpha = 0.1
+def update_q(state,action,reward,next_state):
+    qvalue = qtable[StateSpace.index(state)][ActionSpace.index(action)]
+    # Bellman Equation
+    new_q = (1-alpha)*qvalue + alpha*(reward+gamma*max(qtable[StateSpace.index(next_state)]))
+    qtable[StateSpace.index(state)][ActionSpace.index(action)] = new_q # update Q-Table with new Q-Value
+
+# drive the motors (remember: action is a pair of values from the ActionSpace)
+def drive(action):
+    # start tank allows specifying left speed, right speed
+    motors.start_tank(action[0], action[1])
+
+'''
+    START OF MAIN PROGRAM
+'''
+# Initilize total training steps, episodes, and mode
+total_step = 0
+episode = 0
+mode = -1 # training mode is 0, testing mode is 1
+
+# Initilize Q-table with all Q-values equal to 0 (to start)
+# The size of the Q-table is equal to (number of total states*number of total actions)
+qtable = []
+num_states = len(StateSpace)
+num_actions = len(ActionSpace)
+for i in range(num_states):
+    qtable.append([0]*num_actions)
+
+# alert user we are starting
+hub.speaker.beep(seconds=0.5)
+# Main Loop: run forever (either training or testing)
+while True:
+    # Show current episode on spike screen
+    light_matrix.write(str(episode))
+    if training_button.was_pressed():
+        mode = 0
+    elif testing_button.was_pressed():
+        mode = 1
+        hub.speaker.beep() # beep so they know an action has been entered
+        light_matrix.write('Test') # print TEST
+    else:
+        mode = -1
+    if mode >= 0: # if they are training or testing, otherwise loop and wait for command
+        # PART 1: reset gyro data before start episode (to get "facing forward" direction)
+        hub.speaker.beep() # beep so they know an action has been entered
+        direction.reset_yaw_angle()
+        # initial variables
+        step = 0
+        if mode == 1:
+            step -= num_steps_per_episode # when testing, double number of steps
+        # PART 2: keep going until step count equals number of steps per episode
+        # - or unless robot fully turns around and faces the wrong way!
+        while step < num_steps_per_episode:
+            # PART 2a: read robot current state
+            state = get_hub_state()
+            # Choose an action (if training, use epsilon; if testing, use 1)
+            if mode == 0:
+                action = greedy(state, epsilon_in = epsilon)
+            else:
+                action = greedy(state, epsilon_in = 1)
+            # PART 2b: apply the action (aka move the robot!)
+            drive(action)
+            wait_for_seconds(0.5) # let robot move this way for a while
+            # PART 2c: read the new state
+            new_state = get_hub_state()
+            print('On step', step, 'performed action', action,'and arrived at state', new_state)
+            # PART 2d: give robot reward based on new state
+            # - look up this state in the StateSpace, and determine corresponding reward
+            reward = RewardSpace[StateSpace.index(new_state)]
+            print('- Robot earns reward:', reward)
+            # PART 2e: update Q-Value in table
+            update_q(state,action,reward,new_state)
+            # increment for next iteration of algorithm:
+            step += 1
+            total_step += 1
+            # PART 2f: change epsilon!
+            # - Decrease epsilon as the training process goes, so the robot will explore more at the beginning
+            #   to learn the environment quickly, and then exploit its past experience more in later training phase
+            #   to avoid too much uncessesary exploration.
+            if epsilon > 0.4:
+                epsilon = 0.9 - total_step*0.008
+            # PART 2g: really bad state!
+            # - if robot turned all the way around (facing wrong way), stop this episode
+            current_direction = direction.get_yaw_angle()
+            if current_direction > 160 or current_direction < -160:
+                print('Robot turned all the way around: stop episode!')
+                break
+        # DONE WITH EPISODE
+        motors.stop()
+        episode += 1 # increment episode number
+        print(qtable) # debugging: print Q-Table to standard output
+    else:
+        # no buttons pushed (so no training or testing)
+        # pause briefly and recheck buttons
+        wait_for_seconds(0.2)
+</div>
+
+			<h3 class='activities'>Activity 3: <em>Activity Extensions</em></h3>
+			
+			<ul>
+				<li>Add in the "pointer" code so the robot is always showing which direction it's <em>TRYING</em> to go!</li>
+				<li>Experiment with varying the different variables:</li>
+					<ul>
+						<li>Number of steps per episode</li>
+						<li>The rewards given to different states</li>
+						<li>The epsilon-greedy factor or the alpha and gamma values</li>
+					</ul>
+				<li>Modify the number of states (and associated rewards) or actions.</li>
+				<li>Update code to stop episode if the robot "flips over" on it's back.</li>
+				<li>The robot drives for 1/2 second before registering the new state. What if this is shorter? Or longer? How does that affect the training?</li>
+			</ul>
+
+			<h3 class='activities'>Activity 3: <em>Questions to Ask Your Students</em></h3>
+			
+			<ul>
+				<li>How do you know it's learning when progress isn't always apparent/immediately visible?</li>
+				<li>Do you trust the code? How do you know it's doing what it claims?</li>
+				<li>Even after extensive training, can things still go wrong? What other safeguards should be put in place?</li>
+				<li>For what applications is reinforcement learning a good method? For what scenarios is it a bad strategy?</li>
+			</ul>
+			
+		</blockquote>
+
+		<hr />
+		<a name='next'></a>
+		<h2>Next Steps and Further Exploration</h2>
+		
+		<blockquote>
+			
+			<h3>SPIKE Prime AI Puppy</h3>
+			
+			<div align=center><img src='./resources/AIpuppy.png' /></div>
+			
+			<p>Series of five activities to work through learning Artificial Intelligence and Machine Learning:</p>
+			<ol>
+				<li>Nearest Centroid Classification</li>
+				<li>1-Dimensional K-Nearest Neighbor (KNN)</li>
+				<li>3D KNN Algorithm</li>
+				<li>Linear Regression and/or Reinforcement Learning</li>
+				<li>Image Processing via Teachable Machines</li>
+			</ol>
+			<p><a href='https://www.ceeoinnovations.org/RoboticsPlayground/playlists/SpikeAIPuppy.html' target=_blank>Placemat Instructions for SPIKE Prime AI Puppy</a></p>
+
+			<h3>Other Placemat Instructions</h3>
+			
+			<p>Explore several other SPIKE Prime (and other platform) activities on the CEEO's Robotics Playground site.</p>
+			
+			<p><a href='https://www.ceeoinnovations.org/RoboticsPlayground' target=_blank>https://www.ceeoinnovations.org/RoboticsPlayground</a></p>
+			
+			<p>Placemats related to AI and Machine Learning include (search to find!):</p>
+			<ul>
+				<li>K-Nearest Neighbors</li>
+				<li>K-Means Clustering</li>
+				<li>Reinforcement Learning</li>
+				<li>Morse Code Decoder</li>
+				<li>Smart Conducting Baton</li>
+			</ul>
+
+			<h3>Backpacks for SPIKE Prime</h3>
+			
+			<p>Add other hardware onto your SPIKE Prime, like a camera or micro:bit or breadboard.</p>
+			
+			<p><a href='https://www.ceeoinnovations.org/?project=spike-prime-backpacks' target=_blank>Backpacks for SPIKE Prime</a></p>
+			
+			<h3>Advanced Robotics Projects</h3>
+			
+			<p>Prof. Chris Rogers at Tufts University has taught an advanced robotics class using the SPIKE Prime platform.  <a href='https://www.ceeoinnovations.org/RoboticsPlayground/playlists/me35playlist.html' target=_blank>Check out his playlist of projects here.</a></p>
+			
+			<p>Projects include:</p>
+			<ul>
+				<li>Introduction to WIO Terminal</li>
+				<li>Making a SPIKE Prime Video Game</li>
+				<li>Advanced Line Followers</li>
+				<li>Forward and Inverse Kinematics</li>
+				<li>Smart LEGO Dashboard that communicates with the internet</li>
+				<li>Build a Webcam Car</li>
+				<li>Create a Smart Teleprompter</li>
+				<li>Dancing Robots</li>
+			</ul>
+
+			<h3>Beyond LEGO Robotics</h3>
+			
+			<p>Check out the following services that facilitate training and deploying Machine Learning models:</p>
+			<ul>
+				<li>Teachable Machine by Google: <a href='https://teachablemachine.withgoogle.com' target=_blank>https://teachablemachine.withgoogle.com</a></li>
+				<li>Edge Impulse: <a href='https://www.edgeimpulse.com' target=_blank>https://www.edgeimpulse.com</a></li>
+			</ul>
+			
+		</blockquote>
+
+		<hr />
+		<h2>Special Thanks to:</h2>
+		
+		<p>Chris Rogers, Jenn Cross, Deborah Sunter, Milan Dahal, Ziyi Zhang, David Zabner, James Dwyer</p>
+		
+		<hr />
+		<p>Workshop designed and developed by:</p>
+		<p align=center><a href='https://ceeo.tufts.edu' target=_blank><img src='./resources/ceeo.png' height='100px' border=0 /></a></p>
+		<p align=center><a href='https://www.teaching.com.au/' target=_blank><img src='./resources/mta.png'  height='100px' border=0 /></a></p>
+		<p align=center><small>Content is Copyright 2022 by Ethan Danahy</small></p>
+		<p align=center><small>LEGO®, the LEGO® logo, the Brick, SPIKE™, and the Minifigure are trademarks of ©The LEGO® Group.<br />All other trademarks and copyrights are the property of their respective owners. All rights reserved.<br />This workshop and content isn’t affiliated, authorized, or endorsed by The LEGO Group.</small></p>
+	</body>
+	<!-- scripts that make this page run... -->
+	<script lang='javascript'>
+		/* interactive functions */
+		function downloadandexecute(editor_num) {
+			console.log(editor_num);
+			editor_num_str = editor_num.toString();
+			editor_ptr = editor_list[editor_num];
+			select_element = document.getElementById("slot" + editor_num_str);
+			slot_num = parseInt(select_element.options[select_element.options.selectedIndex].value);
+			slot_name = document.getElementById("name" + editor_num_str).value;
+            
+            // stop any currently running program
+            mySPIKE.stopCurrentProgram();
+            
+            // get text content with Ace.js API
+            var editSession = editor_ptr.getSession();
+            var codeSession = editSession.getValue();
+
+            // write program to brick
+            mySPIKE.writeProgram(slot_name, codeSession, slot_num, async function () {
+                // execute program
+                mySPIKE.executeProgram(slot_num);
+            });
+		}
+		function download(editor_num) {
+			console.log(editor_num);
+			editor_num_str = editor_num.toString();
+			editor_ptr = editor_list[editor_num];
+			select_element = document.getElementById("slot" + editor_num_str)
+			slot_num = parseInt(select_element.options[select_element.options.selectedIndex].value);
+			slot_name = document.getElementById("name" + editor_num_str).value;
+
+            // stop any currently running program
+            mySPIKE.stopCurrentProgram();
+
+            // get text content with Ace.js API
+            var editSession = editor_ptr.getSession();
+            var codeSession = editSession.getValue();
+				
+            // write program to brick
+            mySPIKE.writeProgram("ML_Activity", codeSession, slot_num, async function () {
+                // stop any currently running program
+                mySPIKE.stopCurrentProgram();
+            });
+		}
+		function execute(editor_num) {
+			select_element = document.getElementById("slot" + editor_num_str)
+			slot_num = parseInt(select_element.options[select_element.options.selectedIndex].value);
+            mySPIKE.stopCurrentProgram();
+            mySPIKE.executeProgram(slot_num);
+		}
+		function stop(editor_num) {
+			mySPIKE.stopCurrentProgram();
+		}
+
+		/* global objects */
+        var mySPIKE = document.getElementById("service_SPIKE").getService();
+        var editor_list = new Array();
+        var editor_num = 0;
+        while (document.getElementById('editor' + editor_num.toString()) != null) {
+	        editor_num_str = editor_num.toString();
+			editor_list.push(ace.edit("editor" + editor_num_str));
+			var button = null;
+			button = document.getElementById("downloadandexecute" + editor_num_str);
+			button.addEventListener("click", downloadandexecute.bind(null, editor_num));
+			button = document.getElementById("download" + editor_num_str);
+			button.addEventListener("click", download.bind(null, editor_num));
+			button = document.getElementById("execute" + editor_num_str);
+			button.addEventListener("click", execute.bind(null, editor_num));
+			button = document.getElementById("stop" + editor_num_str);
+			button.addEventListener("click", stop.bind(null, editor_num));
+	        editor_num++;
+        }
+	</script>
+</html>
