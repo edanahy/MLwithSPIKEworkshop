@@ -28,14 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
 	versionNote.id = "version-note";
 	versionNote.innerHTML = `
 		<span id="close-note">x</span>
-		You are currently viewing version
+		Currently viewing version
 		<select id="version-select">
 			${Object.entries(versions).map(([ver, date]) => `
 				<option value="${ver}" ${ver === version ? "selected" : ""}>
 					${ver} (${date.toLocaleDateString()})
 				</option>
 			`).join('')}
-		</select> of the <b><em>Machine Learning with SPIKE</em></b> workshop.
+		</select> of the <b><em>ML with SPIKE</em></b> workshop.
 	`;
 
 	// Append the version note at the top of the body
