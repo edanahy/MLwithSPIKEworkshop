@@ -1,0 +1,28 @@
+/* Style for the message box */
+#version-note {
+	background-color: darkred;
+	color: white;
+	padding: 10px;
+	margin: 20px;
+	text-align: center;
+	border-radius: 10px;
+	position: relative;
+}
+
+/* Style for the close "x" button */
+#close-note {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+/* Style for the dropdown */
+#version-select {
+	background-color: lightgray;
+	color: black;
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+}
