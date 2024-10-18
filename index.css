@@ -3,10 +3,11 @@
 	background-color: darkred;
 	color: white;
 	padding: 10px;
-	margin: 20px;
+	margin: 20px auto;
 	text-align: center;
 	border-radius: 10px;
 	position: relative;
+	width: 60%; /* part of the page */
 }
 
 /* Style for the close "x" button */
