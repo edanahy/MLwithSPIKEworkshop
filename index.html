@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Machine Learning (ML) with SPIKE Workshop</title>
+	<style>
+		/* Make the iframe take up the full window */
+		html, body, iframe {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			width: 100%;
+			border: none;
+			overflow: clip;
+		}
+	</style>
+	<!-- LOAD IN THE VERSION INFORMATION -->
+	<script src="versions.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// Function to get query parameters from the URL
+			function getQueryVariable(variable) {
+				const query = window.location.search.substring(1);
+				const vars = query.split("&");
+				for (let i = 0; i < vars.length; i++) {
+					const pair = vars[i].split("=");
+					if (pair[0] === variable) {
+						return pair[1];
+					}
+				}
+				return null;
+			}
+
+			// Function to find the latest version from versions.js
+			function getLatestVersion() {
+				let latestVersion = null;
+				let latestDate = new Date(0); // Start with a very old date
+				for (const [version, date] of Object.entries(versions)) {
+					if (date > latestDate) {
+						latestDate = date;
+						latestVersion = version;
+					}
+				}
+				return latestVersion;
+			}
+
+			// Get the version from the query string
+			let version = getQueryVariable("version");
+
+			// Check if the version exists in the list, otherwise use the latest version
+			if (!version || !versions.hasOwnProperty(version)) {
+				version = getLatestVersion(); // Load the latest version if none is specified or invalid
+			}
+
+			// Load the version into the iframe
+			const iframe = document.getElementById("version-frame");
+			iframe.src = version + '.html';
+		});
+	</script>
+</head>
+<body>
+	<iframe id="version-frame" src=""></iframe>
+</body>
+</html>
