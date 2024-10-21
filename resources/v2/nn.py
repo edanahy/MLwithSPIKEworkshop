@@ -1,7 +1,7 @@
 # Fruit Scanner Nearest Neighbor Classification
 
 #######
-# October 17, 2024; Prep for LEGO workshop
+# October 17, 2024; Prep for LEGO workshop; test edit
 # Notice --> you can train on yellow via RGB values and see the resulting "prediction" when running the ML model even though the LEGO software does not "predict" yellow (it may not have a color or predict a different color)
 # In other words, a well trained nearest neighbor algorithm is an improvement over the fixed algorithm provided within the API for color detection
 ######
