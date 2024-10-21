@@ -13,7 +13,7 @@
 # 5) add console messages that go with the prediction so you can line up motor position with fruit prediction
 #########
 
-from hub import sound, port, button
+from hub import sound, port, button, light_matrix
 from color_sensor import rgbi
 import force_sensor
 from runloop import run, sleep_ms, until
@@ -22,6 +22,7 @@ import motor
 import math
 
 train_data = []
+motor_pos = 0
 
 def distance(RGB, rgb2):
 	return math.sqrt(((RGB[0] - rgb2[0])**2) + ((RGB[1] - rgb2[1])**2) + ((RGB[2] - rgb2[2])**2)) 
@@ -38,38 +39,49 @@ def nearest_neighbor():
 			min_idx = i
 	return min_idx
 
+light_matrix.show_image(light_matrix.IMAGE_DIAMOND)
+
 while True: 
 	
 	#
 	if force_sensor.pressed(port.F):
 		if (motor.absolute_position(port.B) > 0):
-			train_data.append((rgbi(port.D), 1))
+			motor_pos = motor.absolute_position(port.B)
+			train_data.append((rgbi(port.D), 1, motor_pos))
 			sound.beep(440, 500, 100)
 			print(train_data)
 			print("apple")
-			print(motor.absolute_position(port.B))
-			sleep(3)
+			print(motor_pos)
+			light_matrix.show_image(light_matrix.IMAGE_ARROW_E)
+			sleep(2)
+			light_matrix.show_image(light_matrix.IMAGE_DIAMOND)
 		if (motor.absolute_position(port.B) < 0):
-			train_data.append((rgbi(port.D), 0))
+			motor_pos = motor.absolute_position(port.B)
+			train_data.append((rgbi(port.D), 0, motor_pos))
 			sound.beep(440, 500, 100)
 			print(train_data)
 			print("banana")
-			print(motor.absolute_position(port.B))
-			sleep(3)
+			print(motor_pos)
+			light_matrix.show_image(light_matrix.IMAGE_ARROW_W)
+			sleep(2)
+			light_matrix.show_image(light_matrix.IMAGE_DIAMOND)
 
 	if button.pressed(button.RIGHT):
 		print("RIGHT BUTTON WAS PRESSED")
 		sound.beep(800, 500, 100)
+		light_matrix.show_image(light_matrix.IMAGE_TRIANGLE)
 		while button.pressed(button.LEFT) == False:
 			if force_sensor.pressed(port.F):
 				i = nearest_neighbor()
 				if train_data[i][1] == 0:
 					sleep(0.1)
 					sound.beep(800, 50, 100)
-					motor.run_to_absolute_position(port.B, -90, 800)
-					sleep(2)
+					motor.run_to_absolute_position(port.B, train_data[i][2], 800)
+					light_matrix.write("Banana")
+					sleep(1)
 				if train_data[i][1] == 1:
 					sleep(0.1)
 					sound.beep(800, 50, 100)
-					motor.run_to_absolute_position(port.B, 90, 800)
-					sleep(2)
+					motor.run_to_absolute_position(port.B, train_data[i][2], 800)
+					light_matrix.write("Apple")
+					sleep(1)
