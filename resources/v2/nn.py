@@ -39,11 +39,12 @@ def nearest_neighbor():
 light_matrix.show_image(light_matrix.IMAGE_DIAMOND)
 
 async def main():
-    print ('Welcome to Fruit Scanner!')
+	print ('Welcome to Fruit Scanner!')
 	print ('Move motor dial to the colored brick representing the Banana (left) or Apple (right)')
 	print ('Hold fruit over the color sensor and press the force sensor to train')
 	print ('Train multiple points for each fruit')
 	print ('Press the right button when you are ready to test your scanner')
+	
     while True:
     	if force_sensor.pressed(port.F):
     	    print('FORCE PRESSED')
