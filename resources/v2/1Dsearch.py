@@ -1,14 +1,13 @@
 # 1D Search via Q-Learning
 
 ########
-# 1 Dim RL based on Tanushree's code for linear forward and backward
-# Code adapted by Bill and CodeRobots.ai (chatGPT)
-# For workshop TO DO:
-# 1) Add a pleasing tune when the arm swings over Green
-# 2) Fix the UI for better overall flow
-# 3) Write bullet points for how to use the system and what to look out as the system "learns" the path to the Green brick.  IE --> the reward history and the timesteps history
-# 4) Review Tanushree's code an pick-out tinkerable variables....
-#########
+# First developed by Tanushree Burman, Tufts CEEO 2024
+# Modified and adapted for ML workshop October 21, 2024
+#######
+# PORTS
+#   MOTOR in Port B
+#   COLOR SENSOR in Port D
+#######
 
 from hub import port, button, sound, light_matrix
 import motor
