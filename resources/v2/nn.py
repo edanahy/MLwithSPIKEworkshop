@@ -85,3 +85,5 @@ while True:
 					motor.run_to_absolute_position(port.B, train_data[i][2], 800)
 					light_matrix.write("Apple")
 					sleep(1)
+
+sleep_ms(50)
