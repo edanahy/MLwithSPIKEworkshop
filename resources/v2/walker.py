@@ -1,17 +1,13 @@
 # Smart Walker Q-learning Code
 
-#####
-#TO DO:
-# 1) think through how to communicate to the user robot motor direction and what to change.  For instance in my robot, at first it was going backward so I reversed the '-' signs in the drive function
-# 2) communicate to the user how many episodes to train
-# 3) check to see if you can train more episodes after you start testing... is the training data "saved"?
-# 4) display in the console how many steps are being executed per episode??
-# 5) communicate to user the +/- margin for pointing it in a constant direction... how perfect do they need to reset it each time?
-# 6) add into the experience --> run both motors at the same velocity to see what the robot does with no training...
-# 7) what if the challenge is to try to drive straight out of a door.  Explore with no training and see that you can't make it out the door... Ideally do this with just simple motor commands (velocity = 50,50 for the two motors) AND then do this with no training in the RL code.
-# 7 continued .... then train for X # of episodes and try again... add training episodes until you make it out the door.  Observe how the robot is utilizing it's training to "correct" for getting off kilter.
-# 8) UPDATE --> I added a print statement so you can track the rewards for each state action pair.
-# 9) UPDATE --> I made one leg shorter so that without training, the bot always goes left.  With training...
+#######
+# First developed by Ziyi Zhang, Tufts CEEO circa 2021
+# Modified and adapted for ML workshop October 21, 2024
+#######
+# PORTS
+#   MOTOR in Port A
+#   MOTOR in Port B
+#######
 
 import motor
 from hub import port, motion_sensor, button, light_matrix, sound
