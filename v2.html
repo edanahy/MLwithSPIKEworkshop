@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>ML with SPIKE Workshop</title>
-    <!-- Workshop Version Information -->
+    	<!-- Workshop Version Information -->
 		<script>
 			// Set the version of this workshop:
 			let version = "v2";
@@ -14,7 +14,24 @@
 		<!--IDE API-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js"></script>
 		<style>
-			#editor {
+			.activities {
+				background-color: lightgreen;
+			}
+			.challenge {
+				border: 2px solid gray;
+				margin: 5px;
+				padding: 5px;
+				background-color: orange;
+				border-radius: 5px;
+			}
+			.instructions {
+				border: 2px solid gray;
+				margin: 5px;
+				padding: 5px;
+				background-color: lightyellow;
+				border-radius: 5px;
+			}
+			.editor {
 				border: 1px black solid;
 				position: relative;
 				left: 10px;
@@ -29,7 +46,7 @@
 		<p align=center>An introductory workshop by <b>Ethan Danahy</b> and <b>Bill Church</b>.</p>
 		
 		<hr />
-		
+
 		<!-- SPIKE WebSerial Connection -->
 		<div style="position: fixed; top: 15px; right: 15px;" align=center>
 			<small>
@@ -38,7 +55,166 @@
 				<div id="root"></div>
 			</small>
 		</div>
+
+		<h1>Overview</h1>
 		
+		<p align=center><img src='./resources/v2/overview.png' width="905px"></p>
+		
+		<p><b>Quick Links:</b>
+			<ul>
+				<li><a href='#intro'>Introduction to Machine Learning (ML)</a></li>
+				<li><a href='#nn'>Supervised Learning via Nearest Neighbor</a></li>
+				<ul>
+					<li><a href='#activity1' class='activities'><b><em>Activity 1:</em> Fruit Scanner</b></a></li>
+				</ul>
+				<li><a href='#linear'>Linear Regression Interpolation</a></li>
+				<ul>
+					<li><a href='#activity2' class='activities'><b><em>Activity 2:</em> Stop Sign</b></a></li>
+				</ul>
+				<li><a href='#rl'>Reinforcement Learning</a></li>
+				<ul>
+					<li><a href='#activity3' class='activities'><b><em>Activity 3:</em> Smart Walker</b></a></li>
+					<li><a href='#activity4' class='activities'><b><em>Activity 4:</em> 1D Color Search</b></a></li>
+				</ul>
+			</ul>
+		</p>
+		
+		<hr />
+
+		<a name='intro'></a>
+		<h1>Introduction to Machine Learning (ML)</h1>
+		
+			<blockquote><iframe width="560" height="315" src="https://www.youtube.com/embed/Gv9_4yMHFhI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></blockquote>
+		
+		<hr />
+		
+		<a name='nn'></a>
+		<h1>Supervised Learning via Nearest Neighbor</h1>
+		
+		<blockquote>
+			<img src='./resources/v2/SupervisedLearning.png'>
+		</blockquote>
+
+		<blockquote>
+			<img src='./resources/v2/nn_algorithm.png'>
+		</blockquote>
+
+		<blockquote><iframe width="560" height="315" src="https://www.youtube.com/embed/e1MvAgCR2Cw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></blockquote>
+		
+		<hr />
+		
+		<a name='activity1'></a>
+		<h1 class='activities'><em>Activity 1:</em> Fruit Scanner</h1>
+
+		<div class='challenge'>
+			<p><b>Fruit Scanner Challenge:</b></p>
+			
+			<p>Build a Fruit Scanner with a Color Sensor detector, Force Sensor trigger, and
+				Motor color indicator. Train it to detect apples and bananas.</p> 
+		</div>
+
+		<p align=center><img src='./resources/v2/FruitScanner.png'></p>
+		
+		<input type="button" id="execute0" value="Run Code" />
+		<input type="button" id="stop0" value="Stop" />
+		<br /><br />
+		<div class='editor' id='editor0'></div>
+
+		<hr />
+
+		<a name='linear'></a>
+		<h1>Linear Regression Interpolation</h1>
+		
+		
+		
+		<hr />
+
+		<a name='activity2'></a>
+		<h1 class='activities'><em>Activity 2:</em> Stop Sign</h1>
+
+		<div class='challenge'>
+			<p><b>Stop at the Stop Sign:</b></p>
+			
+			<p>Build a car and train it to stop at the stop sign.  Use linear regression to
+				gradually slow down to a nice stop.
+			</p> 
+		</div>
+
+		<p align=center><img src='./resources/v2/StopSignSetup.png' width='950px'></p>
+		
+		<div class='instructions'>
+			<p><b>Instructions:</b></p>
+			
+			<p>Use the speed throttle to input different speeds based on distance.  Train
+				the car to go fast when far away and to stop when at the stop sign.
+			</p> 
+		</div>
+		
+		<p><img src='./resources/v2/StopSignInput.png' width='600px'></p>
+
+		<input type="button" id="execute1" value="Run Code" />
+		<input type="button" id="stop1" value="Stop" />
+		<br /><br />
+		<div class='editor' id='editor1'></div>
+		
+		<hr />
+		
+		<a name='rl'></a>
+		<h1>Reinforcement Learning</h1>
+
+		<blockquote><iframe width="560" height="315" src="https://www.youtube.com/embed/JgvyzIkgxF0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></blockquote>
+		
+		<blockquote><p><img src='./resources/v2/ReinforcementLearning.png' /></p></blockquote>
+
+		<blockquote><p><img src='./resources/v2/RLfeedbackloop.png' /></p></blockquote>
+
+		<hr />
+		
+		<a name='activity3'></a>
+		<h1 class='activities'><em>Activity 3:</em> Smart Walker</h1>
+
+		<div class='challenge'>
+			<p><b>Turn Silly Walks into a Smart Walker:</b></p>
+			
+			<p>Use reinforcement learning to teach a Silly Walks robot to walk straight.</p> 
+		</div>
+		
+		<p align=center>
+			<table><tr>
+				<td><img src='./resources/v2/silly_walk.gif' /></td>
+				<td><img src='./resources/v2/right.png' width=240 height=240 /></td>
+				<td><img src='./resources/v2/walker.gif' /></td>
+			</tr></table>
+		</p>
+		
+		<p><a href='https://education.lego.com/v3/assets/blt293eea581807678a/bltf117b333c6076b7e/5f880123b8b59a77a945d12a/le_activitybrief_sillywalks_wb.pdf' target=_blank>Silly Walk robots</a> end up going in any/all directions! Using the Q-Learning Reinforcement Learning algorithm we can train a walker-robot to auto-correct and head straight.</p>
+		<p>
+		
+		<p align=center><img src='./resources/v2/SillyWalks_QLearning.png' /></p>
+
+		<input type="button" id="execute2" value="Run Code" />
+		<input type="button" id="stop2" value="Stop" />
+		<br /><br />
+		<div class='editor' id='editor2'></div>
+
+		<hr />
+
+		<a name='activity4'></a>
+		<h1 class='activities'><em>Activity 4:</em> 1D Color Search</h1>
+
+		<div class='challenge'>
+			<p><b>Search Out a Color:</b></p>
+			
+			<p>Use reinforcement learning to have a robot search out a color.</p> 
+		</div>
+		
+		<p align=center><img src='./resources/v2/RLsearch.png' width='950px'></p>
+		
+		<input type="button" id="execute3" value="Run Code" />
+		<input type="button" id="stop3" value="Stop" />
+		<br /><br />
+		<div class='editor' id='editor3'></div>
+
 		<hr />
 
 		<p>Workshop designed and developed by:</p>
@@ -47,4 +223,84 @@
 		<p align=center><small>LEGO®, the LEGO® logo, the Brick, SPIKE™, and the Minifigure are trademarks of ©The LEGO® Group.<br />All other trademarks and copyrights are the property of their respective owners. All rights reserved.<br />This workshop and content isn’t affiliated, authorized, or endorsed by The LEGO Group.</small></p>
 
 	</body>
+	<script>
+		// Data structure holding div IDs and corresponding file names (or URLs)
+		const contentData = [
+			{ editor: 0, fileName: 'nn.py' },
+			{ editor: 1, fileName: 'linear.py' },
+			{ editor: 2, fileName: 'walker.py' },
+			{ editor: 3, fileName: '1Dsearch.py' }
+		];
+
+		function sendCode(code) {
+			if (window.pyrepl && window.pyrepl.isActive) {
+				window.pyrepl.write = code;
+			}
+		}
+		function execute(editor_num) {
+			console.log('Execute code in editor #', editor_num);
+			editor_num_str = editor_num.toString();
+			editor_ptr = editor_list[editor_num];
+			// stop any currently running program
+			stop();
+			// get text content with Ace.js API
+			var editSession = editor_ptr.getSession();
+			var codeSession = editSession.getValue();
+			// send code to robot
+			sendCode(codeSession);
+		}
+		function stop() {
+			if (window.pyrepl && window.pyrepl.isActive) {
+				// issue a Control-C to exit code
+				window.pyrepl.stop;
+				// stop motors if running
+				sendCode("import motor\nmotor.stop()");
+			}
+		}
+		// render the ACE editors
+		var editor_list = new Array();
+		var editor_num = 0;
+		while (document.getElementById('editor' + editor_num.toString()) != null) {
+			editor_num_str = editor_num.toString();
+			editor_list.push(ace.edit("editor" + editor_num_str));
+			// now set up the buttons
+			button = document.getElementById("execute" + editor_num_str);
+			button.addEventListener("click", execute.bind(null, editor_num));
+			button = document.getElementById("stop" + editor_num_str);
+			button.addEventListener("click", stop.bind(null, editor_num));
+			// move on to the next editor
+			editor_num++;
+		}
+		console.log('LOADED: Found', editor_num, 'editor(s) on the page.');
+
+		// Function to load the file content into the appropriate div
+		function loadContent() {
+			contentData.forEach(item => {
+				let full_path = './resources/v2/' + item.fileName;
+				fetch(full_path)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error(`Error fetching ${item.fileName}: ${response.statusText}`);
+						}
+						return response.text();
+					})
+					.then(data => {
+						let editor_num = item.editor;
+						let editor_ptr = editor_list[editor_num];
+						if (editor_ptr) {
+							// set text content with Ace.js API
+							let editSession = editor_ptr.getSession();
+							editSession.setValue(data);
+						}
+					})
+					.catch(error => {
+						console.error('Error:', error);
+					});
+			});
+		}
+		
+		// Run the loadContent function once the page is fully loaded
+		window.addEventListener('DOMContentLoaded', loadContent);
+		
+	</script>
 </html>
