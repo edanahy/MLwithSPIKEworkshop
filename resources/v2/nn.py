@@ -4,6 +4,11 @@
 # First developed during the summer of 2024 by CEEO Interns
 # Modified and adapted for ML workshop October 21, 2024
 #######
+# PORTS
+#   MOTOR in Port B
+#   COLOR SENSOR in Port D
+#   FORCE SENSOR in Port F
+#######
 
 from hub import sound, port, button, light_matrix
 from color_sensor import rgbi
