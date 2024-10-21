@@ -1,4 +1,12 @@
 # Supervised Classification via Linear Regression
+#######
+# Developed by Ethan Danahy, CEEO 2024
+#######
+# PORTS
+#   Speed Input MOTOR in Port E
+#   Drive MOTOR in Port A
+#   DISTANCE SENSOR in Port B
+#######
 
 # Necessary Module Imports
 from hub import button, port, sound
