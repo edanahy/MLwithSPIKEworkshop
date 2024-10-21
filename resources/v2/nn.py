@@ -1,17 +1,9 @@
 # Fruit Scanner Nearest Neighbor Classification
 
 #######
-# October 17, 2024; Prep for LEGO workshop; test
-# Notice --> you can train on yellow via RGB values and see the resulting "prediction" when running the ML model even though the LEGO software does not "predict" yellow (it may not have a color or predict a different color)
-# In other words, a well trained nearest neighbor algorithm is an improvement over the fixed algorithm provided within the API for color detection
-######
-# TO DO:
-# 1) Switch out force sensor for left hub button
-# 2) Provide text instructions for the UI in the console
-# 3) instead of 90 and -90 do 45 and -45 so the motor moves to the absolute positions via shortest distance on one side of the motor's hub circle
-# 4) Add a third fruit
-# 5) add console messages that go with the prediction so you can line up motor position with fruit prediction
-#########
+# First developed during the summer of 2024 by CEEO Interns
+# Modified and adapted for ML workshop October 21, 2024
+#######
 
 from hub import sound, port, button, light_matrix
 from color_sensor import rgbi
