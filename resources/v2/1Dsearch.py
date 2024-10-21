@@ -80,7 +80,7 @@ class Environment:
 	async def reset(self):
 		print("Place the robot's sensor at the starting position and press the left button to start.")
 		await debounce_button(button.LEFT)
-		self.current_state = color_sensor.color(port.E)
+		self.current_state = color_sensor.color(port.D)
 		return self.current_state
 
 	async def step(self, action):
@@ -91,7 +91,7 @@ class Environment:
 			await self.run_motor(self.sweep_degrees)
 
 		# Update the current state after the complete action
-		self.current_state = color_sensor.color(port.E)
+		self.current_state = color_sensor.color(port.D)
 
 		# Display the first letter of the current color
 		if self.current_state in self.states:
@@ -116,7 +116,7 @@ class Environment:
 
 	async def run_motor(self, degrees):
 		# Execute motor movement synchronously to have immediate feedback control
-		await motor.run_for_degrees(port.A, degrees, self.sweep_speed)
+		await motor.run_for_degrees(port.B, degrees, self.sweep_speed)
 
 
 	async def setup_path(self):
