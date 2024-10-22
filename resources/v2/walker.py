@@ -143,6 +143,17 @@ async def test(q_table):
 
 # Main logic
 async def main():
+	print ('Welcome RL Walker')
+	print ('Pick an object ~5 feet away and point your robot at it')
+	print ('This is the direction for which you are training your walker to move')
+	print ('For each episode you train, RESET the motors to their starting position')
+	print ('')
+	print ('Press the left button to test your RL model')
+	print ('Press the right button to train an episode, improving your RL model')
+	print ('Display shows the # of training episodes')
+	print ('Switch between testing and training whenever you wish')
+	print ('To STOP a testing/training episode, turn your robot 180 degrees')
+	
 	qtable = initialize_q_table(len(StateSpace), len(ActionSpace))
 	episode = 0
 
